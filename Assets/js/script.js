@@ -7,25 +7,23 @@ var timeBlocks = document.querySelectorAll('.time-block')
 $(function() {
   hourContainer.addEventListener('click', handleSaveButton)
   
+// changes past present and future datasets based on actual time
 timeBlocks.forEach(element => {
- 
   var blockHour = element.id.slice(5)
-    console.log (blockHour)
-    console.log (currentHour)
   if(currentHour > blockHour){
     element.dataset.when = 'past'
   } else if (currentHour === blockHour){
     element.dataset.when = 'present'
   } else{
     element.dataset.when = 'future'
-  }
-
-  }
+  }}
 )
 
+//sets time every second 
 setInterval(setTime,1000)
 });
 
+// sets local storage with textarea value
 function handleSaveButton(e){
   if(e.target.matches('button')){
   var clickedSaveHour = e.target.closest('div').id
@@ -34,8 +32,10 @@ function handleSaveButton(e){
   }
 }
 
+
 function setHourText(){
   for (let i = 7; i <= 18; i++) {
+    // prepends single digit hours with 0
     i = leftFillNum(i,2)
     var hourText = localStorage.getItem("hour-" + i)
     var hour = '#hour-' + i
