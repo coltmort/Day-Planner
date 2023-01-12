@@ -17,11 +17,7 @@ timeBlocks.forEach(element => {
   } else{
     element.dataset.when = 'future'
   }}
-)
-
-//sets time every second 
-setInterval(setTime,1000)
-});
+)});
 
 // sets local storage with textarea value
 function handleSaveButton(e){
@@ -46,9 +42,12 @@ function setHourText(){
 setHourText()
 
 function setTime(){
+  today = dayjs().format('MMM DD, YY [at] h:mm')
   currentDay.innerText = today
 }
 setTime()
+//sets time every second 
+setInterval(setTime,1000)
 
 function leftFillNum(num, targetLength) {
   return num.toString().padStart(targetLength, 0);
